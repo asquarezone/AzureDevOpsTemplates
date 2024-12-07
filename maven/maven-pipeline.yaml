@@ -4,20 +4,13 @@ pool: Default
 
 variables:
   - group: generic_java_maven
-resources:
-  repositories:
-    - repository: resuabePublicAssets
-      type: github
-      name: asquarezone/AzureDevOpsTemplates
-      refs: 'refs/heads/main'
-      endpoint: 'github.com_shaikkhajaibrahim'
 
 steps:
-  - template: maven/maven-build.yaml@resuabePublicAssets
+  - template: ./maven-build.yaml
     parameters:
       goal: $(goal)
       specificVersion: ''
-      artifactsPath: '**/spring-petclinic*.jar'
+      artifactsPath: $(artifactPath)
       testResultsFiles: $(testResultsFile)
   
     
